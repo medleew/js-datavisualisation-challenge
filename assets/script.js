@@ -16,13 +16,14 @@ function addInlineDataGraph() {
   parentTab.insertBefore(divGraph, table);
 
   let svg = dimple.newSvg("#"+divGraph.id, 590, 750);
-  let data = getDataFromTable(table); 
+  let data = getDataFromTable(table); // à crée ---> 
   let myChart = new dimple.chart(svg, data);
   myChart.setBounds(60, 30, 505, 705);
   let x = myChart.addCategoryAxis("x", "Year");
-  let y = myChart.addMeasureAxis("y", "Nombre");
-  myChart.addLegend(60, 10, 500, 20, "right");
+  let y = myChart.addMeasureAxis("y", "Numbers");
+  // myChart.addLegend(60, 10, 500, 20, "right");
   myChart.addSeries("Country", dimple.plot.line, [x, y]);
+  myChart.ease = "bounce";
   myChart.defaultColors = [
     new dimple.color(getRandomRgb()),
     new dimple.color(getRandomRgb()),
@@ -57,7 +58,6 @@ function addInlineDataGraph() {
     new dimple.color(getRandomRgb()),
     new dimple.color(getRandomRgb()),
   ]; 
-  myChart.ease = "bounce";
   myChart.draw();
 }
 
@@ -140,7 +140,7 @@ function addSecondInlineDataGraph() {
   myChart.setBounds(60, 30, 505, 705);
   let x = myChart.addCategoryAxis("x", "Year");
   let y = myChart.addMeasureAxis("y", "Nombre");
-  myChart.addLegend(60, 10, 500, 20, "right");
+  // myChart.addLegend(60, 10, 500, 20, "right");
   myChart.addSeries("Country", dimple.plot.line, [x, y]);
   myChart.defaultColors = [
     new dimple.color(getRandomRgb()),
