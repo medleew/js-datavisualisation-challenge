@@ -61,13 +61,13 @@ function addInlineDataGraph() {
   myChart.draw();
 }
 
-function getDataFromTable(table) {
-    let rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    let rowsNbre = rows.length;
-    let dataObj = [];
-    let years = [];
+// function getDataFromTable(table) {
+//     let rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+//     let rowsNbre = rows.length;
+//     let dataObj = [];
+//     let years = [];
 
-}
+// }
 
 
 
