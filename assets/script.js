@@ -1,231 +1,197 @@
-// function that generate random color in rgba for the every line in the chart
+// random color generator
 function getRandomRgb() {
   let o = Math.round, r = Math.random, s = 255;
   return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
 }
 
 
-addEventListener("load", addInlineDataGraph);
+// first chart
+const table1 = document.getElementById("table1");
+const parentTab1 = table1.parentNode;
 
-function addInlineDataGraph() {
-  let table = document.getElementById('table1');
-  let parentTab = table.parentNode;
-
-  let divGraph = document.createElement('div');
-  divGraph.id = "FirstChartDiv";
-  parentTab.insertBefore(divGraph, table);
-
-  let svg = dimple.newSvg("#"+divGraph.id, 590, 750);
-  let data = getDataFromTable(table); // à crée ---> 
-  let myChart = new dimple.chart(svg, data);
-  myChart.setBounds(60, 30, 505, 705);
-  let x = myChart.addCategoryAxis("x", "Year");
-  let y = myChart.addMeasureAxis("y", "Numbers");
-  // myChart.addLegend(60, 10, 500, 20, "right");
-  myChart.addSeries("Country", dimple.plot.line, [x, y]);
-  myChart.ease = "bounce";
-  myChart.defaultColors = [
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-  ]; 
-  myChart.draw();
-}
-
-// function getDataFromTable(table) {
-//     let rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-//     let rowsNbre = rows.length;
-//     let dataObj = [];
-//     let years = [];
-
-// }
-
-
-
-
-
-// second chart 
-
-  addEventListener("load", addSecondInlineDataGraph);
-
-function addSecondInlineDataGraph() {
-  let table = document.getElementById('table2');
-  let parentTab = table.parentNode;
-
-  let divGraph = document.createElement('div');
-  divGraph.id = "SecondChartDiv";
-
-  parentTab.insertBefore(divGraph, table);
-  // // Get data from an external location and generate the chart when it returns
-  // d3.json("MyAwesomeDataSource.json", function (data) {
-  // 	// Add an svg object to the body element
-  // 	var svg = dimple.newSvg("body", 1200, 800);
-  // 	// Create a new chart object based on this data and svg
-  // 	var myChart = new dimple.chart(svg, data);
-  // 	...
-  // });
-  // // Check the number of axes added before and after adding
-  // console.log(myChart.axes.length); // Logs 0
-  // myChart.addMeasureAxis("x", "Sales Volume");
-  // console.log(myChart.axes.length); // Logs 1
-  let svg = dimple.newSvg("#"+divGraph.id, 590, 800);
-  let data = getDataFromTable(table); 
-  let myChart = new dimple.chart(svg, data);
-  myChart.setBounds(60, 30, 505, 705);
-  let x = myChart.addCategoryAxis("x", "Year");
-  let y = myChart.addMeasureAxis("y", "Nombre");
-  // myChart.addLegend(60, 10, 500, 20, "right");
-  myChart.addSeries("Country", dimple.plot.line, [x, y]);
-  myChart.defaultColors = [
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb()),
-    new dimple.color(getRandomRgb())
-  ]; 
-  myChart.draw();
-}
-
-
-// Requires a DOM element
-function getDataFromTable(table) {
-    let rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-    let rowsNbre = rows.length;
-    let dataObj = [];
-  
-    // Stores years for Y data
-    let years = [];
-  
-    for (let i = 0; i < rowsNbre; i++) {
-  
-      // Skip if it's the first row (titles)
-      if(i === 0) {
-        let cells = rows[0].getElementsByTagName('th');
-        let celluleNbre = cells.length;
-  
-        for (let j = 0; j < celluleNbre; j++) {
-          // Skip first two matches (they're empty)
-          if (j < 1) continue;
-          // Push the data for the rest
-          years.push(cells[j].innerHTML);
-        }
-        continue;
-      }
-  
-      // Otherwise loop through the data
-      let cells = rows[i].getElementsByTagName('td');
-      let cellsLength = cells.length;
-  
-      let rowCountry = cells[0].innerHTML;
-  
-      for (let j = 1; j < cellsLength; j++) {
-          let dataPoint = {"Country":rowCountry};
-          dataPoint["Year"] = years[j-1];
-          let nb = parseFloat(cells[j].innerHTML.replace(",", "."))*1000;
-          dataPoint["Nombre"] = Number.isNaN(nb) ? 0 : nb;
-  
-          dataObj.push(dataPoint);
-      }
-      // End cells loop
-  
-    }
-    // End row loop
-  
-    return dataObj;
-  
-  }
-
-  // remote data in real time via ajax:
-
-  // let table = document.getElementById('firstHeading');
-  // let parentTab = table.parentNode;
-
-  // let divGraphInRealTime = document.createElement('div');
-  // divGraph.id = "divGraphInRealTime";
-
-
-let data = [];
-
-let table = document.getElementById('table1');
-
-let years = table.getElementsByTagName('tr')[1].getElementsByTagName('th');
-let yearsArray = [];
+let divGraph1 = document.createElement("div");
+divGraph1.id = "firstChart";
+parentTab1.insertBefore(divGraph1, table1);
+var data = [];
+var years = table1.getElementsByTagName("tr")[1].getElementsByTagName("th");
+var yearsArray = [];
 
 for(let i = 2; i < years.length; i++) {
-  let content = years[i].innerHTML;
-  yearsArray.push(content);
+        let content = years[i].innerHTML;
+        yearsArray.push(content);
 }
 
-let rows = table.getElementsByTagName('tr');
+var rows = table1.getElementsByTagName("tr");
 
 for(let i = 2; i < rows.length; i++) {
-  let cells = rows[i].getElementsByTagName('td');
+        let cells = rows[i].getElementsByTagName("td");
 
-  for (let j = 0; j < cells.length; j++) {
-    if(j === 0) {
-      var pays = cells[j].innerHTML;
-    }
-    else {
-      data.push({data:cells[j].innerHTML, pays:pays, year:yearsArray[j-1]});
-    }
-  }
+        for(let j = 0; j < cells.length; j++) {
+                if(j === 0) {
+                        var pays = cells[j].innerHTML;
+                } else if(!isNaN(parseInt(cells[j].innerHTML))) {
+                        data.push({data:parseInt(cells[j].innerHTML), pays:pays, years:yearsArray[j-1]});
+                  }
 
+        }
 }
 
-console.log(data);
+var svg = dimple.newSvg("#" + divGraph1.id, "100%", 450);
+var myChart = new dimple.chart(svg, data);
+myChart.setBounds(30, 110, "90%", 305);
+var x = myChart.addCategoryAxis("x", ["years", "pays"]);
+var y = myChart.addMeasureAxis("y", "data");
+y.ticks = 15;
+myChart.addSeries("pays", dimple.plot.line);
+myChart.addLegend(10, 10, "100%", 200);
+myChart.defaultColors = [
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb())
+]; 
+myChart.draw();
+
+// Second chart
+const table2 = document.getElementById('table2');
+const parentTab2 = table2.parentNode;
+
+let divGraph2 = document.createElement("div");
+divGraph2.id = "secondChart";
+parentTab2.insertBefore(divGraph2, table2);
+
+var data = [];
+var years = table2.getElementsByTagName("tr")[0].getElementsByTagName("th");
+var yearsArray = [];
+
+console.log(yearsArray)
+
+for(let i = 2; i < years.length; i++) {
+        let content = years[i].innerHTML;
+        yearsArray.push(content);
+}
+
+var rows = table2.getElementsByTagName("tr");
+
+for(let i = 2; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName("td");
+
+        for(let j = 0; j < cells.length; j++) {
+                if(j === 0) {
+                        var pays = cells[j].innerHTML;
+                }
+                        
+                else if(!isNaN(parseInt(cells[j].innerHTML))) {
+                        data.push({data:parseInt(cells[j].innerHTML), pays:pays, years:yearsArray[j-1]});
+                }
+
+        }
+}
+
+    
+var myChart = new dimple.chart(dimple.newSvg("#" + divGraph2.id, "100%", 550), data);
+myChart.setBounds(35, 180, "90%", 305);
+var x = myChart.addCategoryAxis("x", ["years", "pays"]);
+x.addOrderRule("years", false);
+var y = myChart.addMeasureAxis("y", "data");
+y.ticks = 15;
+myChart.addSeries("pays", dimple.plot.bar);
+myChart.addLegend(10, 10, "100%", 200);
+myChart.defaultColors = [
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb()),
+  new dimple.color(getRandomRgb())
+]; 
+myChart.draw();
+
+// graph 3 + Ajax
+let table3 = document.getElementById('content')
+let parentNode = table3.parentNode;
+var graph3 = document.createElement("div");
+graph3.id = "graph3";
+
+parentNode.insertBefore(graph3, table3);
+
+var request = new XMLHttpRequest();
+request.open('GET', 'https://inside.becode.org/api/v1/data/random.json', true);
+
+request.onload = function() {
+        
+  if (request.status >= 200 && request.status < 400) {
+    var data = JSON.parse(request.responseText);
+
+    
+    console.log(data)
+
+    var myChart = new dimple.chart(dimple.newSvg("#" + graph3.id, "100%", 550), data);
+    myChart.setBounds(35, 180, "90%", 305);
+    var x = myChart.addCategoryAxis("x", ["years", "pays"]);
+    x.addOrderRule("years", false);
+    var y = myChart.addMeasureAxis("y", "data");
+    y.ticks = 15;
+    myChart.addSeries("pays", dimple.plot.bar);
+    myChart.addLegend(10, 10, "100%", 200);
+    myChart.draw();
+  } 
+};
+
+request.send();
+
