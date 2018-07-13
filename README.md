@@ -31,4 +31,4 @@ Projet terminé.
 [Le projet](https://medleew.github.io/js-datavisualisation-challenge/)
 
 ### Languages utilisés ?  
-JS, librairie D3 dimple, Ajax.
+JS, librairie D3 dimple, Ajax ( + Html, css fourni )
