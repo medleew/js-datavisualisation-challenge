@@ -14,7 +14,7 @@ Du 9 au 13 Juillet 2018
 [BeCode](https://www.becode.org/) Startup Lovelace 2
 
 ### A quoi ça ressemble ?  
-![Réalisation finale](/images/sc.png)
+![Réalisation finale](/img/challenge.png)
 
 ### La progression ?  
 Projet terminé.
