@@ -84,6 +84,7 @@ myChart.defaultColors = [
 myChart.draw();
 
 // Second chart
+
 const table2 = document.getElementById('table2');
 const parentTab2 = table2.parentNode;
 
@@ -94,8 +95,6 @@ parentTab2.insertBefore(divGraph2, table2);
 var data = [];
 var years = table2.getElementsByTagName("tr")[0].getElementsByTagName("th");
 var yearsArray = [];
-
-console.log(yearsArray)
 
 for(let i = 2; i < years.length; i++) {
         let content = years[i].innerHTML;
@@ -163,35 +162,84 @@ myChart.defaultColors = [
 myChart.draw();
 
 // graph 3 + Ajax
-let table3 = document.getElementById('content')
-let parentNode = table3.parentNode;
-var graph3 = document.createElement("div");
-graph3.id = "graph3";
 
-parentNode.insertBefore(graph3, table3);
+const bodyContent = document.getElementById("bodyContent");
+// const parentTab3 = divGraph3.parentNode; 
 
+var divGraph3 = document.createElement("div");
+divGraph3.id = "ThirdChart";
+// parentTab3.insertBefore(divGraph3, bodyContent);
+
+var container = document.getElementById("content");
+container.insertBefore(divGraph3, bodyContent);
+var myChart;
+var tableAjax = [];
 var request = new XMLHttpRequest();
+
 request.open('GET', 'https://inside.becode.org/api/v1/data/random.json', true);
 
 request.onload = function() {
         
   if (request.status >= 200 && request.status < 400) {
     var data = JSON.parse(request.responseText);
-
     
-    console.log(data)
+  for(i = 0; i < data.length; i ++){
+    
+    let object = { 
+        "data1": parseInt(data[i][0]),
+        "data2": parseInt(data[i][1])
 
-    var myChart = new dimple.chart(dimple.newSvg("#" + graph3.id, "100%", 550), data);
-    myChart.setBounds(35, 180, "90%", 305);
-    var x = myChart.addCategoryAxis("x", ["years", "pays"]);
-    x.addOrderRule("years", false);
-    var y = myChart.addMeasureAxis("y", "data");
-    y.ticks = 15;
-    myChart.addSeries("pays", dimple.plot.bar);
-    myChart.addLegend(10, 10, "100%", 200);
+    }
+
+    tableAjax.push(object)
+} 
+     myChart = new dimple.chart(dimple.newSvg("#" + divGraph3.id, "100%", 550), tableAjax);
+    myChart.setBounds(35, 60, "90%", 450);
+    var x = myChart.addCategoryAxis("x", "data1");
+    x.addOrderRule("data1", false);
+    var y = myChart.addMeasureAxis("y", "data2");
+    y.ticks = 5;
+    myChart.addSeries(null, dimple.plot.line);
+    myChart.defaultColors = [
+        new dimple.color("red"),
+    ]; 
     myChart.draw();
+    updateChart()
   } 
 };
 
 request.send();
 
+
+function updateChart(){
+    request.open('GET', 'https://inside.becode.org/api/v1/data/random.json', true);
+    
+    request.onload = function() {
+        
+        if (request.status >= 200 && request.status < 400) {
+          var data = JSON.parse(request.responseText);
+          
+        for(i = 0; i < data.length; i ++){
+          
+          let object = { 
+              "data1": parseInt(data[i][0]),
+              "data2": parseInt(data[i][1])
+           }
+      
+           tableAjax.push(object)
+        }
+        console.log(tableAjax)  
+
+        myChart.data = tableAjax;
+        myChart.draw();
+        // setTimeout(function(){updateChart()}, 1000);
+
+
+        }     
+        
+    }
+    setTimeout(function(){updateChart()}, 1000);
+
+    request.send()
+    
+}
